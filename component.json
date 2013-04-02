@@ -1,0 +1,11 @@
+{
+  "name": "jquer.chords",
+  "version": "1.0.0",
+  "main": ["jquery.chords.js","jquery.diagram.js","grid.js"],
+  "dependencies": {
+    "jquery": "~1.9.1"
+  },
+  "devDependencies": {
+    "requirejs": "~2.1.5"
+  }
+}
