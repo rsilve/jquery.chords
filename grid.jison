@@ -116,6 +116,8 @@ chordname
 	: NOTE MODIFIER BASE NOTE MODIFIER	{ $$ = $1 + $2 + $3 + $4 + $5 }
 	| NOTE MODIFIER BASE NOTE 	{ $$ = $1 + $2 + $3 + $4 }
 	| NOTE MODIFIER				{ $$ = $1 + $2 }
+	| NOTE BASE NOTE MODIFIER   { $$ = $1 + $2 + $3 + $4 }
+	| NOTE BASE NOTE		    { $$ = $1 + $2 + $3 }
 	| NOTE 						{ $$ = $1 }
 	;
 

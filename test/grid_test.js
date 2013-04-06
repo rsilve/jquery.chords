@@ -133,9 +133,9 @@ exports.jison = {
 		test.done();
   },
   allChordForm : function (test) {
-        test.expect(34);
+        test.expect(40);
         ["A", "A#", "Ab", "Am", "A-sus2", "A-sus4", "Aadd9", "Am6",  
-        "Am75b", "A-", "A+", "A75+", "Aø", "A°", "Am/G", "Am/G#", "Am/Gb"].forEach ( function(c) {
+        "Am75b", "A-", "A+", "A75+", "Aø", "A°", "A/G","A/G#","A/Gb", "Am/G", "Am/G#", "Am/Gb"].forEach ( function(c) {
         	var rows = grid.parse(c);
 			test.ok(rows);
 			test.equal(rows[0][0].chords[0].chord, c);
