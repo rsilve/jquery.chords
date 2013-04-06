@@ -1,6 +1,6 @@
 {
   "name": "jquer.chords",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": ["jquery.chords.js","jquery.diagram.js","grid.js"],
   "dependencies": {
     "jquery": "~1.9.1"
@@ -12,6 +12,7 @@
     "test/**",
     "*.html",
     "main.js",
-    "Gruntfile.js"
+    "Gruntfile.js",
+    "README*"
   ]
 }

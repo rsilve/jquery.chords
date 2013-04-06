@@ -34,9 +34,8 @@ module.exports = function(grunt) {
   	},
     jison: {
 		grid : {
-			file : {
-				src: 'grid.jison',
-				dest:'grid.js'
+			files : {
+				'grid.js' :'grid.jison'
 			}
 		}
     },
@@ -53,7 +52,7 @@ module.exports = function(grunt) {
         tasks: ['jison','livereload']
       }
     },
-    clean: ["target"]	
+    clean: ["grid.js"]	
   });
   
 	

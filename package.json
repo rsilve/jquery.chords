@@ -1,6 +1,6 @@
 {
   "name": "jquery.chords",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "javascript tools for chords grid",
   "main": "Gruntfile.js",
   "scripts": {
@@ -9,7 +9,7 @@
   "author": "Robert Silve <robert@silve.net>",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "grunt-jison": "git://github.com/rsilve/grunt-jison",
+    "grunt-jison": "git://github.com/rsilve/grunt-jison.git",
     "jison": "~0.4.2",
     "grunt-contrib-nodeunit": "~0.1.2",
     "grunt-contrib-clean": "~0.4.0",

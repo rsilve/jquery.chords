@@ -13,17 +13,17 @@ case 3: return $$[$0]
 break;
 case 4: $$[$0].unshift($$[$0-2]); this.$ = $$[$0] 
 break;
-case 5: this.$ = [ $$[$0-2] ] 
+case 5: this.$ = [$$[$0-2]] 
 break;
-case 6: this.$ = [ $$[$0-1] ] 
+case 6: this.$ = [$$[$0-1]] 
 break;
 case 8: this.$ = $$[$0] 
 break;
 case 9: $$[$0].unshift($$[$0-2]); this.$ = $$[$0] 
 break;
-case 10: this.$ = [ $$[$0-1] ] 
+case 10: this.$ = [$$[$0-1]] 
 break;
-case 11: this.$ = [ $$[$0] ] 
+case 11: this.$ = [$$[$0]] 
 break;
 case 12: $$[$0].repeatLeft = true; this.$ = $$[$0] 
 break;
@@ -72,7 +72,7 @@ case 19:
 break;
 case 20: $$[$0].chords.unshift( $$[$0-1] ); this.$ = $$[$0] 
 break;
-case 21: this.$ = { chords : [ $$[$0] ] } 
+case 21: this.$ = { chords : [$$[$0]] } 
 break;
 case 22: $$[$0-1].duration ++; this.$ = $$[$0-1] 
 break;
