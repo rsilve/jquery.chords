@@ -120,7 +120,7 @@
         ctx.restore();
     }
 	
-	var parse = function(text) {
+	var parse = function(text){
       	var d = text.split(":");
       	var diag = [];
       	diag[0] = d[0];
