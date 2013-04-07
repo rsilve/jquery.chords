@@ -259,8 +259,10 @@
 		  var settings = $.extend({
   			landscape : false,
       		size : "normal", // "small"
-      		json : parser.parse($(this).text())
   		  }, param);	
+  		  if (settings.json === undefined) {
+  		  	settings.json = parser.parse($(this).text());
+  		  }
 		  drawCallback(this, settings.json, settings.landscape, settings.size);
 	      return $(this);
 		});
