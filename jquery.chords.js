@@ -251,9 +251,9 @@
      
     
 	
-	 $.fn.chords = function() {
+	 $.fn.chords = function(param) {
 	 	
-	 	return this.each(function(param) {
+	 	return this.each(function() {
 		  var $this = $(this);
 		  
 		  var settings = $.extend({
