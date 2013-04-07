@@ -8,6 +8,17 @@
     }
 }(function($){
 	
+	function clear(canvas, ctx) {
+		ctx.save();
+
+		// Use the identity matrix while clearing the canvas
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+		// Restore the transform
+		ctx.restore();
+	}
+	
 	function drawCallback(canvas, chords, landscape, size) {
     	var ctx;
     	
@@ -15,6 +26,7 @@
         	canvas = G_vmlCanvasManager.initElement(canvas);
         }
         ctx = canvas.getContext('2d');
+        	clear(canvas, ctx);
         	var w = size == "normal" ? 92 : 46;
         	var bounds = settingBounds(canvas, chords, w, landscape);
         	if (landscape) {
