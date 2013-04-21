@@ -5,7 +5,7 @@
 %lex
 
 %%
-[ \t]+                   /* skip whitespace */
+[ \t\xA0]+              /* skip whitespace */
 \n+						return 'NEWLINE';
 ":"						return 'REPEAT'
 "_"						return 'PLACEHOLDER'
@@ -19,8 +19,9 @@
 "("						return 'LEFT_PARAN';
 ")"						return 'RIGHT_PARAN';
 [\w]+					return 'TEXT';
-[\#b]                   return 'ALITERATION'
 <<EOF>>               	return 'EOF';
+
+
 
 /lex
 

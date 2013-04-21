@@ -77,7 +77,7 @@ exports.jison = {
   },
   barSeveralMesure : function (test) {
         test.expect(12);
-        ["A | B", "|A | B", "A| B ", "|A|B|"].forEach(function(g) {
+        ["A | B", "|A | B", "A| B ", "|A|B|"].forEach(function(g) {
         	var rows = grid.parse(g);
 			test.ok(rows);
 			test.equal(rows.length, 1);     // 1 ligne
@@ -201,5 +201,15 @@ exports.jison = {
 		test.equal(rows.length, 3);     // 3 ligne
 		test.done();
   },
-  
+  errorMessage : function (test) {
+        test.expect(1);
+        try {
+        	var rows = grid.parse("A B A R");
+		} catch(e) {
+        	//console.log(e.message.split("\n").slice(0,3).join("\n"));
+        	test.equal(1,1)
+        }
+        test.done();
+  },
+
 };
