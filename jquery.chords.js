@@ -27,6 +27,7 @@
         }
         ctx = canvas.getContext('2d');
         	clear(canvas, ctx);
+        	ctx.save();
         	var w = size == "normal" ? 92 : 46;
         	var bounds = settingBounds(canvas, chords, w, landscape);
         	if (landscape) {
@@ -49,7 +50,7 @@
   			ctx.shadowColor = "rgba(255, 255, 255,1)";
   			ctx.fillStyle = "black"
       		writeChords(ctx, chords, w, offset);
-        
+        ctx.restore();
         	    /*	*/
     }
     
