@@ -19,7 +19,7 @@
 		ctx.restore();
 	}
 	
-	function drawCallback(canvas, chords, landscape, size) {
+	function drawCallback(canvas, chords, landscape, size, offset) {
     	var ctx;
     	
     	if (!canvas.getContext) {
@@ -48,12 +48,12 @@
 		  	ctx.shadowBlur = 2;
   			ctx.shadowColor = "rgba(255, 255, 255,1)";
   			ctx.fillStyle = "black"
-      		writeChords(ctx, chords, w);
+      		writeChords(ctx, chords, w, offset);
         
         	    /*	*/
     }
     
-    function writeChords(ctx, lines, size) {
+    function writeChords(ctx, lines, size, offset) {
     	
     	var x = 0;
       	var y = 0;
@@ -61,11 +61,11 @@
       	$.each(lines, function(index, measures) {
       		$.each(measures, function(index, measure) {
       			if (measure.same) {
-      				writeChord(ctx, 1, [{chord: "%"}], x, y, size)
+      				writeChord(ctx, 1, [{chord: "%"}], x, y, size, offset)
       			} else if (measure.empty) {
       				// do nothing
       			} else {
-      				writeChord(ctx, measure.type, measure.chords, x, y, size);
+      				writeChord(ctx, measure.type, measure.chords, x, y, size, offset);
       			}
         	    x += size;
       		})
@@ -75,38 +75,60 @@
       
     }
     
-    function writeChord(ctx, type, chords, x, y, size) {
-		switch(type) {
+    function chord_offset(chord, pos) {
+    	if (chord === "%")
+    		return chord;
+    	if (! pos) 
+    		return chord;
+    	var index = { 
+    		"A" : 0, "A#" : 1, "Bb" : 1, "B" : 2, "C" : 3, "C#"	: 4, "Db" : 4,
+    		"D"	: 5, "D#" : 6, "Eb"	: 6, "E" : 7, "F" : 8, "F#"	: 9, "Gb": 9,
+    		"G"		: 10, "G#" : 11, "Ab" : 11}
+    	var reverse = ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#'];	
+    	var c = chord;
+    	for (var p in index) {
+    		if (chord.indexOf(p) === 0) {
+				var i = (index[p] + pos) % 12;
+				if (i < 0) i += 12
+				c =  chord.replace(p, reverse[i]);
+    		} 
+    	}	
+    	return c;
+    	
+    }
+    
+    function writeChord(ctx, type, chords, x, y, size, offset) {
+    	switch(type) {
 			case 1 : 
-				ctx.fillText(chords[0].chord, x+size/2, y+size/2);
+				ctx.fillText(chord_offset(chords[0].chord, offset), x+size/2, y+size/2);
 				break;
 			case 2 : 
-				ctx.fillText(chords[0].chord, x+size/4, y+size/4);
-				ctx.fillText(chords[1].chord, x+2*size/3, y+3*size/4);
+				ctx.fillText(chord_offset(chords[0].chord, offset), x+size/4, y+size/4);
+				ctx.fillText(chord_offset(chords[1].chord, offset), x+2*size/3, y+3*size/4);
 				break;
 			case 3 :
-				ctx.fillText(chords[0].chord, x+size/3, y+size/4);
-				ctx.fillText(chords[1].chord, x+2*size/3, y+3*size/4);
+				ctx.fillText(chord_offset(chords[0].chord, offset), x+size/3, y+size/4);
+				ctx.fillText(chord_offset(chords[1].chord, offset), x+2*size/3, y+3*size/4);
 				break;
 			case 4 : 
-				ctx.fillText(chords[0].chord, x+size/3, y+size/4);
-				ctx.fillText(chords[1].chord, x+3*size/4, y+3*size/4);
+				ctx.fillText(chord_offset(chords[0].chord, offset), x+size/3, y+size/4);
+				ctx.fillText(chord_offset(chords[1].chord, offset), x+3*size/4, y+3*size/4);
 				break;
 			case 5:
-				ctx.fillText(chords[0].chord, x+size/4, y+size/4);
-				ctx.fillText(chords[1].chord, x+3*size/4, y+size/4);
-				ctx.fillText(chords[2].chord, x+size/2, y+3*size/4);
+				ctx.fillText(chord_offset(chords[0].chord, offset), x+size/4, y+size/4);
+				ctx.fillText(chord_offset(chords[1].chord, offset), x+3*size/4, y+size/4);
+				ctx.fillText(chord_offset(chords[2].chord, offset), x+size/2, y+3*size/4);
 				break;
 			case 6:
-				ctx.fillText(chords[0].chord, x+size/2, y+size/4);
-				ctx.fillText(chords[1].chord, x+size/4, y+3*size/4);
-				ctx.fillText(chords[2].chord, x+3*size/4, y+3*size/4);
+				ctx.fillText(chord_offset(chords[0].chord, offset), x+size/2, y+size/4);
+				ctx.fillText(chord_offset(chords[1].chord, offset), x+size/4, y+3*size/4);
+				ctx.fillText(chord_offset(chords[2].chord, offset), x+3*size/4, y+3*size/4);
 				break;
 			case 7:
-				ctx.fillText(chords[0].chord, x+size/4, y+size/4);
-				ctx.fillText(chords[1].chord, x+3*size/4, y+size/4);
-				ctx.fillText(chords[2].chord, x+size/4, y+3*size/4);
-				ctx.fillText(chords[3].chord, x+3*size/4, y+3*size/4);
+				ctx.fillText(chord_offset(chords[0].chord, offset), x+size/4, y+size/4);
+				ctx.fillText(chord_offset(chords[1].chord, offset), x+3*size/4, y+size/4);
+				ctx.fillText(chord_offset(chords[2].chord, offset), x+size/4, y+3*size/4);
+				ctx.fillText(chord_offset(chords[3].chord, offset), x+3*size/4, y+3*size/4);
 				break;	
 			
 			default:
@@ -255,15 +277,16 @@
 	 	
 	 	return this.each(function() {
 		  var $this = $(this);
-		  
+		  var offset = $this.data("chord-offset")
 		  var settings = $.extend({
   			landscape : false,
       		size : "normal", // "small"
+      		offset : offset
   		  }, param);	
   		  if (settings.json === undefined) {
   		  	settings.json = parser.parse($(this).text());
   		  }
-		  drawCallback(this, settings.json, settings.landscape, settings.size);
+		  drawCallback(this, settings.json, settings.landscape, settings.size, settings.offset);
 	      return $(this);
 		});
   	 };

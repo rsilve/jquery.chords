@@ -3,7 +3,7 @@ requirejs.config({
     baseUrl: '.',
     paths: {
         grid: 'grid',
-        jquery: 'components/jquery/jquery',
+        jquery: 'bower_components/jquery/jquery',
         chords: 'jquery.chords',
         diagram: 'jquery.diagram'
     }
