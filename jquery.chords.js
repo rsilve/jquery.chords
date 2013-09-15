@@ -1,10 +1,10 @@
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['jquery', 'grid'], factory);
+        define(['jquery', 'grid', 'transpose'], factory);
     } else {
         // Browser globals
-        factory(jQuery, parser);
+        factory(jQuery, parser, transpose);
     }
 }(function($){
 	
@@ -77,24 +77,7 @@
     }
     
     function chord_offset(chord, pos) {
-    	if (chord === "%")
-    		return chord;
-    	if (! pos) 
-    		return chord;
-    	var index = { 
-    		"A" : 0, "A#" : 1, "Bb" : 1, "B" : 2, "C" : 3, "C#"	: 4, "Db" : 4,
-    		"D"	: 5, "D#" : 6, "Eb"	: 6, "E" : 7, "F" : 8, "F#"	: 9, "Gb": 9,
-    		"G"		: 10, "G#" : 11, "Ab" : 11}
-    	var reverse = ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#'];	
-    	var c = chord;
-    	for (var p in index) {
-    		if (chord.indexOf(p) === 0) {
-				var i = (index[p] + pos) % 12;
-				if (i < 0) i += 12
-				c =  chord.replace(p, reverse[i]);
-    		} 
-    	}	
-    	return c;
+    	return transpose.transpose(chord, pos);
     	
     }
     
