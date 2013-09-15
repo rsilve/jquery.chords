@@ -12,7 +12,7 @@ var transpose = {
     	var c = chord;
     	for (var p in index) {
     		if (chord.indexOf(p) === 0) {
-    			console.log("Found "+p+" for "+ chord);
+    			//console.log("Found "+p+" for "+ chord);
 				var i = (index[p] + pos) % 12;
 				if (i < 0) i += 12
 				c =  chord.replace(p, reverse[i]);

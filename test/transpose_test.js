@@ -21,5 +21,18 @@ exports.t = {
 			test.equal(n, index[p]);     // 1 ligne
         }
         test.done();
+  	},
+  	transpose_chord_reverse : function (test) {
+  		test.expect(34);
+  		var index = { 
+    		"A" : "G#", "A#" : "A", "Bb" : "A", "B" : "Bb", "C" : "B", "C#"	: "C", "Db" : "C",
+    		"D"	: "C#", "D#" : "D", "Eb" : "D", "E" : "Eb", "F" : "E", "F#"	: "F", "Gb": "F",
+    		"G"	: "F#", "G#" : "G", "Ab" : "G"}
+  		for (var p in index) { 			
+        	var n = transpose.transpose(p, -1);
+			test.ok(n);
+			test.equal(n, index[p]);     // 1 ligne
+        }
+        test.done();
   	}
 }
