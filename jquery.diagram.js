@@ -122,13 +122,25 @@
 	
 	var parse = function(text){
       	var d = text.split(":");
-      	var diag = [];
-      	diag[0] = d[0];
-      	diag[1] = d[1];
-      	for (var x = 0; x < d[2].length; x++)  {
-      	      diag[x + 2] = d[2][x];
-      	}
-		return diag;
+	var diag = [];
+	diag[0] = d[0];
+	diag[1] = d[1];
+	d[2] = d[2].replace(/\|+/, "|");
+	var pos = 2;
+	while (d[2].length > 0) {
+		d[2] = d[2].replace(/^\|/, "");
+		var sep = d[2].indexOf("|")
+		var extract_size = sep < 3 && sep > 0 ? sep : 1;
+		if (pos === 7) {
+			extract_size = d[2].length;
+		}
+		diag[pos] = d[2].substring(0, extract_size)
+		d[2] = d[2].slice(extract_size);
+		console.log(pos, sep, diag[pos], d[2])
+		pos ++;
+        }
+      	
+	return diag;
       }
       
 	 $.fn.diagram = function() {
